@@ -6,7 +6,8 @@
 
 | 路徑 | 類型 | 說明 |
 |---|---|---|
-| [prompt-translator/](prompt-translator/) | skill | 把模糊或口語需求轉譯成可直接使用的 prompt、system prompt、Agent 指令與 sub-agent 委派簡報。含模式 A 一般／B sub-agent／C 審查改寫。 |
+| [prompt-translator/](prompt-translator/) | skill | 從模糊或口語需求產出可直接使用的全新 Prompt、System Prompt、Agent 指令模板與 Sub-agent 委派簡報（含 `Light` 快速通道、靜態快取前綴／動態 `{{變數槽}}` 分離與 `Fresh／Forked` 簡報）。 |
+| [prompt-auditor/](prompt-auditor/) | skill | 審核、診斷、改寫與換代瘦身既有的 Prompt、Skill 或 SOP（依 `SPEC 契約／COMP 補償／STALE／DEBT／DUP／CONFLICT` 逐項歸屬，預設存疑保留，附改寫稿與前後差異）。 |
 
 
 ## Skill 結構
@@ -14,7 +15,8 @@
 ```
 <skill-name>/
 ├── SKILL.md              # 入口：frontmatter（name、description）+ 工作流程
-└── references/           # 需要時才讀的詳細資料，按需載入
+├── references/           # 需要時才讀的詳細資料，按需漸進載入
+└── evals/                # 選配：L1 回歸測試集（evals.json）
 ```
 
 `SKILL.md` 的 `description` 決定何時觸發，所以要寫出使用者會講的話，而不是功能列表。細節放 `references/`，避免主檔膨脹。

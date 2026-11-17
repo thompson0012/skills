@@ -1,0 +1,63 @@
+{
+  "skill_name": "prompt-translator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "幫我寫個 prompt 整理每週產品例會的逐字稿，給沒空參加的設計師跟工程師看重點跟待辦。",
+      "expected_output": "走 Light 快速通道，首輪直接交付精簡 3–8 行可用 Prompt 與 {{變數槽}}，不攔截追問，不套笨重九標籤骨架。",
+      "files": [],
+      "expectations": [
+        "判定為 Light 規模或直接採精簡格式輸出，Prompt 本體保持精練易讀（不硬套 <role>、<tools_and_autonomy>、<examples> 等冗餘區塊）",
+        "首輪直接交付可用 Prompt（以 {{變數槽}} 承接會議逐字稿），不先停下來向用戶提問",
+        "包含缺漏／聽不清楚時的失敗出口（如標註待確認，不自行編造負責人或期限）",
+        "外部逐字稿輸入有標籤包覆與視為純資料（防注入）提示"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "我們想做一個電商客服 Agent，接進訂單 API 跟退貨政策知識庫，讓它自動幫客人查單並處理退款。幫我設計它的 System Prompt 跟輸入模板。",
+      "expected_output": "判定為 Full 規模；分離靜態 System Prompt 前綴與動態 User 輸入後綴；退款與對外承諾強制納入 HITL 或明確權限門檻；附停止條件、防注入與評測方案。",
+      "files": [],
+      "expectations": [
+        "識別為高風險 Full 規模（涉及金錢退款與對外互動）",
+        "將固定規則／工具規範放在靜態前綴（System Prompt），動態檢索資料與客戶訊息放在動態後綴（支援 Prompt Caching）",
+        "明列退款或超額承諾須經人工確認（HITL）或交由程式硬性權限閘門控管，不靠模型自覺",
+        "包含最大步數／重試停止條件與外部客戶訊息的 Prompt Injection 隔離聲明",
+        "附上包含典型正例、缺資料邊界與注入對抗案例的評測與監控建議"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "幫我寫一份給全新 sub-agent 的委派簡報（brief），叫它去查 billing 模組為什麼偶爾會重複開發票，先不要改 code。",
+      "expected_output": "走模式 B（Fresh Sub-agent 委派簡報）；不反問用戶而是首輪產出自足簡報，含已知／已排除槽位、唯讀範圍、完成定義、步數上限與回傳契約。",
+      "files": [],
+      "expectations": [
+        "產出自足的 Fresh Sub-agent 委派簡報，而非反問用戶問題",
+        "明確限定唯讀範圍（禁止修改檔案）與禁止再遞迴派生 sub-agent",
+        "包含具體完成定義（指出檔案路徑與行號）、步數／卡住回報上限與結構化回傳契約（結論先行＋證據＋未確認項）",
+        "未知的環境細節以顯式 {{變數槽}} 或假設清單呈現"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "我們要把供應商寄來的 PDF 報價單文字抽成 JSON 匯入 ERP，裡面有時有人亂寫備註甚至夾奇怪指令。怎麼讓推理模型穩定做這件事？",
+      "expected_output": "隱性需求觸發（未出現 prompt 字眼）；針對資料抽取與推理模型設計：啟用 Structured Outputs／JSON Schema、缺值規則、防注入隔離，且不硬規定推理模型的思考步驟。",
+      "files": [],
+      "expectations": [
+        "即使原話沒寫「prompt」，仍識別為設計模型指令與抽取規格並產出可用 Prompt",
+        "建議搭配平台 Structured Outputs／程式端 JSON Schema 驗證與明確缺值規則（如 null）",
+        "針對供應商外部文本加上標籤包裹與忽略內含指令的防注入條款",
+        "針對推理模型不強迫手寫分步 Chain-of-Thought 思考格式"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "派一個 sub-agent 去跑目前專案的單元測試，把失敗的那個紅燈修好。",
+      "expected_output": "反例邊界（Lookalike Non-Trigger）：這是要求當前 Agent 直接執行專案除錯任務，不應被 prompt-translator 劫持成印出一份『## 最終 Prompt』教學模板。",
+      "files": [],
+      "expectations": [
+        "直接動手執行專案測試／派發工具處理任務，而非把回應變成一份給人類複製貼上的『## 最終 Prompt』交付文件"
+      ]
+    }
+  ]
+}
