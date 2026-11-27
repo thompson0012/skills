@@ -1,0 +1,50 @@
+{
+  "skill": "skill-architect",
+  "cases": [
+    {
+      "id": "trig-1",
+      "type": "explicit_positive",
+      "prompt": "幫我建立一個新的 Agent Skill，專門用來做 PR 安全審查，要有 SKILL.md、參考規範跟評測集。",
+      "expected_trigger": true,
+      "rationale": "Explicitly requests creating a new Agent Skill with SKILL.md, references, and evals."
+    },
+    {
+      "id": "trig-2",
+      "type": "implicit_positive",
+      "prompt": "我們團隊每週都要做競品拆解，流程很固定但每次 AI 都會漏掉定價比較跟資料來源查核，幫我把這套做法封裝成可重複觸發的能力模組。",
+      "expected_trigger": true,
+      "rationale": "Implicitly asks to package a recurring workflow with gap-closing invariants into a reusable skill."
+    },
+    {
+      "id": "trig-3",
+      "type": "explicit_positive_optimization",
+      "prompt": "這個舊的 SKILL.md 有 220 行，而且常常在用戶只是問問題時誤觸，幫我重構瘦身並補上觸發測試。",
+      "expected_trigger": true,
+      "rationale": "Requests compressing an existing bloated skill and fixing trigger precision with evals."
+    },
+    {
+      "id": "trig-4",
+      "type": "lookalike_non_trigger_prompt",
+      "prompt": "幫我寫一段一次性 prompt，把這份會議逐字稿整理成三個重點。",
+      "expected_trigger": false,
+      "expected_route": "prompt-translator",
+      "rationale": "One-off prompt drafting belongs to prompt-translator, not skill-architect."
+    },
+    {
+      "id": "trig-5",
+      "type": "lookalike_non_trigger_audit",
+      "prompt": "幫我檢查這段客服 System Prompt 換成新模型後有哪些規則可以刪掉。",
+      "expected_trigger": false,
+      "expected_route": "prompt-auditor",
+      "rationale": "Auditing a standalone non-skill system prompt belongs to prompt-auditor."
+    },
+    {
+      "id": "trig-6",
+      "type": "lookalike_non_trigger_execution",
+      "prompt": "直接幫我跑一次 PR 安全審查，看這個 diff 有沒有 SQL injection。",
+      "expected_trigger": false,
+      "expected_route": "direct_execution",
+      "rationale": "User asks to directly execute a security review, not to build a skill."
+    }
+  ]
+}

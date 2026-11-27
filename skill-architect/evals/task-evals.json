@@ -1,0 +1,44 @@
+{
+  "skill": "skill-architect",
+  "cases": [
+    {
+      "id": "task-1",
+      "category": "greenfield_skill_design",
+      "prompt": "幫我設計一個給工程師用的 `sql-migration-guard` skill，審查資料庫 migration 腳本的鎖表風險與回滾方案。",
+      "expectations": [
+        "Defines L1 frontmatter with both positive triggers and explicit Do NOT use boundaries (at least 3 lookalike non-triggers).",
+        "Keeps SKILL.md concise (25-60 lines) focusing on delta-only SPEC invariants (lock risks, zero-downtime checks, rollback exits) rather than basic SQL tutorials.",
+        "Separates deep checklists/schemas into references/ and identifies deterministic checks (e.g., DDL linting) suitable for scripts/.",
+        "Includes both trigger-evals and task-evals covering normal, edge/missing, conflict, and injection/untrusted-input cases."
+      ]
+    },
+    {
+      "id": "task-2",
+      "category": "bloat_compression_and_ssot",
+      "prompt": "我有一個 180 行的 `release-notes` SKILL.md，裡面貼了 5 篇長範例，而且 references/checklist.md 又把規則重寫了一遍。請用 skill-architect 原則幫我重構。",
+      "expectations": [
+        "Compresses SKILL.md into concise high-leverage principles without duplicating references/.",
+        "Removes redundant long examples and model crutches (COMP) while preserving domain SPEC contracts.",
+        "Adds explicit failure exits (e.g., missing commit range or unverified breaking changes) and proposes A/B regression checks."
+      ]
+    },
+    {
+      "id": "task-3",
+      "category": "high_risk_deterministic_offload",
+      "prompt": "我們要建一個處理財務發票對帳的 Skill，之前用文字叫模型算加總跟核對稅號常常算錯，還會被發票備註裡的怪字帶偏。怎麼設計這個 Skill？",
+      "expectations": [
+        "Routes to Full risk tier with HITL/approval gates for financial discrepancies.",
+        "Offloads arithmetic and tax-ID validation to deterministic scripts/ or code rather than prose instructions.",
+        "Enforces strict data-vs-instruction isolation for untrusted invoice notes and explicit failure exits for mismatches."
+      ]
+    },
+    {
+      "id": "task-4",
+      "category": "boundary_and_non_trigger",
+      "prompt": "幫我把這段給實習生看的新人報到信改得更親切一點。",
+      "expectations": [
+        "Recognizes this as a direct writing task (non-trigger) rather than hijacking the turn into creating a SKILL.md or eval suite."
+      ]
+    }
+  ]
+}
