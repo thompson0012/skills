@@ -1,0 +1,50 @@
+{
+  "skill": "knowledge-navigator",
+  "cases": [
+    {
+      "id": "trig-1",
+      "type": "explicit_positive_domain",
+      "prompt": "我剛接手一個 Kubernetes 專案但完全零基礎，請幫我建立一份能快速上工的學習地圖。",
+      "expected_trigger": true,
+      "rationale": "Explicitly asks for structured beginner onboarding in a new technical domain."
+    },
+    {
+      "id": "trig-2",
+      "type": "implicit_positive_concept",
+      "prompt": "常聽到同事講 OAuth2 跟 OIDC，這兩個到底差在哪、在系統裡各自負責哪一段？",
+      "expected_trigger": true,
+      "rationale": "Implicitly asks to decode core concepts, system position, and cause-and-effect."
+    },
+    {
+      "id": "trig-3",
+      "type": "explicit_positive_progress",
+      "prompt": "幫我看看我這輪學了哪些概念，畫出目前的點亮知識圖（Lit-Knowledge Map）。",
+      "expected_trigger": true,
+      "rationale": "Explicitly requests the pull-only Lit-Knowledge Map."
+    },
+    {
+      "id": "trig-4",
+      "type": "lookalike_non_trigger_lookup",
+      "prompt": "HTTP 429 狀態碼是什麼意思？一句話回答就好。",
+      "expected_trigger": false,
+      "expected_route": "direct_execution",
+      "rationale": "Closed-form one-line factual lookup should not trigger structured learning."
+    },
+    {
+      "id": "trig-5",
+      "type": "lookalike_non_trigger_debug",
+      "prompt": "這段 React useEffect 造成無限重渲染了，幫我直接修好這個 bug。",
+      "expected_trigger": false,
+      "expected_route": "direct_execution",
+      "rationale": "Direct code debugging is explicitly excluded."
+    },
+    {
+      "id": "trig-6",
+      "type": "lookalike_non_trigger_prompt",
+      "prompt": "幫我寫一個能教新人學 Docker 的系統 Prompt 模板。",
+      "expected_trigger": false,
+      "expected_route": "prompt-translator",
+      "rationale": "Drafting a prompt template belongs to prompt-translator, not knowledge-navigator."
+    }
+  ]
+}

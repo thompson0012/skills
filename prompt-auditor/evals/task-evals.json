@@ -1,0 +1,43 @@
+{
+  "skill": "prompt-auditor",
+  "cases": [
+    {
+      "id": "task-1",
+      "category": "conflict_and_model_upgrade",
+      "prompt": "幫我 review 並優化這份寫得很亂的舊 prompt：\n「你是世界級無敵法務專家！！！絕對不要漏看任何風險！！！永遠不要亂猜！！！看完下面合約 {contract_text} 後，一定要照步驟一、步驟二、步驟三寫出完整思考過程，再輸出 JSON 欄位 risk_level, clause_quote, suggestion。絕對不要輸出 JSON 以外的任何字！！！」（目前我們跑在支援 Structured Outputs 的推理模型上）",
+      "expectations": [
+        "Outputs item-by-item classification (SPEC/COMP/DEBT/CONFLICT) and flags the CONFLICT between forced CoT text and JSON-only output.",
+        "Removes empty hype titles, shouting caps, and rigid CoT instructions on a reasoning model.",
+        "Preserves the three-field JSON SPEC contract with Structured Outputs, moves dynamic {contract_text} after static rules, and adds injection isolation plus failure exits."
+      ]
+    },
+    {
+      "id": "task-2",
+      "category": "conservative_two_proof_rule",
+      "prompt": "模型升到新一代了，幫我看這份 B2B 報價審核 prompt 哪些舊指令可以砍掉瘦身：\n「1. 僅核准毛利率 ≥ 18% 的報價單，低於 18% 一律轉業務總監簽核。\n2. 客戶名稱與統編不得寫入外部搜尋工具。\n3. 回覆時不要使用半形驚嘆號與顏文字。\n4. 請使用 gpt-4-0613 接口並確保總字數小於 8k context 上限。」",
+      "expectations": [
+        "Classifies rules 1 and 2 as SPEC and preserves them intact.",
+        "Retains rule 3 as unverified rather than deleting it, noting it may be a brand-tone SPEC rather than a model crutch.",
+        "Flags rule 4 as STALE and updates it in place instead of deleting surrounding contracts, with regression check suggestions."
+      ]
+    },
+    {
+      "id": "task-3",
+      "category": "kv_cache_and_injection_debt",
+      "prompt": "幫我審這份 prompt 為什麼有時候很慢又很花錢，而且偶爾會被客戶輸入騙過去：\n「參考知識庫全文：{50頁動態檢索內容}\n客戶問題：{query}\n規則：你只能根據知識庫回答，附出處，字數 200 字內，語氣親切，以下是 4 個標準回答範例：...（略 1500 字固定範例）」",
+      "expectations": [
+        "Diagnoses the KV-cache invalidation DEBT caused by placing dynamic content before static rules and examples, and reorders static-first in the rewrite.",
+        "Diagnoses missing data-vs-instruction isolation and adds delimiters + ignore-embedded-instructions guardrails.",
+        "Adds an explicit failure exit when the knowledge base lacks an answer while preserving all existing SPEC constraints."
+      ]
+    },
+    {
+      "id": "task-4",
+      "category": "lookalike_non_trigger",
+      "prompt": "我想做一個全新的 AI 讀書筆記助手，幫讀完論文的研究生整理研究方法跟限制，幫我從頭寫一份 prompt。",
+      "expectations": [
+        "Does not fabricate a classification/deletion audit table for a non-existent draft; routes to greenfield drafting instead."
+      ]
+    }
+  ]
+}

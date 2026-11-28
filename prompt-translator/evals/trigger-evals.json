@@ -1,0 +1,50 @@
+{
+  "skill": "prompt-translator",
+  "cases": [
+    {
+      "id": "trig-1",
+      "type": "explicit_positive",
+      "prompt": "幫我寫個 prompt 整理每週產品例會的逐字稿，給沒空參加的設計師跟工程師看重點跟待辦。",
+      "expected_trigger": true,
+      "rationale": "Explicitly asks to write a prompt for a recurring summary workflow."
+    },
+    {
+      "id": "trig-2",
+      "type": "implicit_positive",
+      "prompt": "我們要把供應商寄來的 PDF 報價單文字抽成 JSON 匯入 ERP，裡面有時有人亂寫備註甚至夾奇怪指令。怎麼讓推理模型穩定做這件事？",
+      "expected_trigger": true,
+      "rationale": "Implicitly asks how to design reliable model instructions and extraction contracts."
+    },
+    {
+      "id": "trig-3",
+      "type": "explicit_positive_brief",
+      "prompt": "幫我寫一份給全新 sub-agent 的委派簡報（brief），叫它去查 billing 模組為什麼偶爾會重複開發票，先不要改 code。",
+      "expected_trigger": true,
+      "rationale": "Explicitly requests a sub-agent delegation brief."
+    },
+    {
+      "id": "trig-4",
+      "type": "lookalike_non_trigger_audit",
+      "prompt": "幫我 review 並優化這份寫得很亂的舊 prompt，看看哪些冗餘規則可以刪掉。",
+      "expected_trigger": false,
+      "expected_route": "prompt-auditor",
+      "rationale": "Reviewing and refactoring an existing prompt belongs to prompt-auditor."
+    },
+    {
+      "id": "trig-5",
+      "type": "lookalike_non_trigger_skill",
+      "prompt": "幫我建立一個新的 Agent Skill，專門用來做 PR 安全審查，要有 SKILL.md 跟 evals。",
+      "expected_trigger": false,
+      "expected_route": "skill-architect",
+      "rationale": "Designing a reusable multi-tier Agent Skill belongs to skill-architect."
+    },
+    {
+      "id": "trig-6",
+      "type": "lookalike_non_trigger_execution",
+      "prompt": "派一個 sub-agent 去跑目前專案的單元測試，把失敗的那個紅燈修好。",
+      "expected_trigger": false,
+      "expected_route": "direct_execution",
+      "rationale": "Asks the current agent to execute debugging directly rather than write prompt text."
+    }
+  ]
+}

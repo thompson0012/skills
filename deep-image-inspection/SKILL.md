@@ -1,6 +1,6 @@
 ---
 name: deep-image-inspection
-description: Principle-first guide for thorough multimodal image inspection on dense UI screenshots, charts/dashboards, small or degraded text, tables, technical diagrams, multi-object counting, visual diffs, occluded scenes, and high-stakes visual verification. Do NOT escalate to multi-pass protocols for clear, single-target, low-stakes visual questions.
+description: Principle-first guide for thorough multimodal image inspection on dense UI screenshots, charts/dashboards, small or degraded text, tables, technical diagrams, multi-object counting, visual diffs, occluded scenes, and high-stakes visual verification. Do NOT use for clear, single-target, low-stakes visual questions or general text/code tasks without images.
 ---
 
 # deep-image-inspection

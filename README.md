@@ -24,7 +24,7 @@
 └── evals/                # 選配：回歸與雙軸測試集（evals.json 或 trigger-evals.json / task-evals.json）
 ```
 
-目前 `deep-image-inspection`、`prompt-auditor`、`prompt-translator`、`skill-architect` 具備 `references/`；`scripts/` 目前僅 `skill-architect` 具備；`evals/` 為 `prompt-translator`、`prompt-auditor` 與 `skill-architect` 具備；`knowledge-navigator` 目前只有 `SKILL.md`。
+目前 `deep-image-inspection`、`prompt-auditor`、`prompt-translator`、`skill-architect` 具備 `references/`；`scripts/` 目前僅 `skill-architect` 具備；五個 skill 均已具備統一格式的 `evals/trigger-evals.json` 與 `evals/task-evals.json`。
 
 `SKILL.md` 的 `description` 決定何時觸發，所以要寫出使用者會講的話，而不是功能列表。細節放 `references/`，避免主檔膨脹。
 

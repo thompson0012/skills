@@ -1,0 +1,50 @@
+{
+  "skill": "prompt-auditor",
+  "cases": [
+    {
+      "id": "trig-1",
+      "type": "explicit_positive_refactor",
+      "prompt": "幫我 review 並優化這份寫得很亂的舊 prompt：「你是世界級無敵法務專家！！！...」",
+      "expected_trigger": true,
+      "rationale": "Explicitly asks to review and optimize an existing prompt."
+    },
+    {
+      "id": "trig-2",
+      "type": "explicit_positive_upgrade",
+      "prompt": "模型升到新一代了，幫我看這份 B2B 報價審核 prompt 哪些舊指令可以砍掉瘦身。",
+      "expected_trigger": true,
+      "rationale": "Requests a model-upgrade audit to trim obsolete instructions while keeping business rules."
+    },
+    {
+      "id": "trig-3",
+      "type": "implicit_positive_diagnosis",
+      "prompt": "幫我審這份 prompt 為什麼有時候很慢又很花錢，而且偶爾會被客戶輸入騙過去：「參考知識庫全文：{50頁動態檢索內容}...」",
+      "expected_trigger": true,
+      "rationale": "Asks to diagnose latency/cost (cache bug) and prompt injection in an existing prompt."
+    },
+    {
+      "id": "trig-4",
+      "type": "lookalike_non_trigger_draft",
+      "prompt": "我想做一個全新的 AI 讀書筆記助手，幫讀完論文的研究生整理研究方法跟限制，幫我從頭寫一份 prompt。",
+      "expected_trigger": false,
+      "expected_route": "prompt-translator",
+      "rationale": "Drafting a brand-new prompt from scratch belongs to prompt-translator."
+    },
+    {
+      "id": "trig-5",
+      "type": "lookalike_non_trigger_skill_design",
+      "prompt": "幫我把這套每週競品拆解流程設計成一個包含 references 和 evals 的新 Agent Skill。",
+      "expected_trigger": false,
+      "expected_route": "skill-architect",
+      "rationale": "Architecting a new multi-tier Agent Skill belongs to skill-architect."
+    },
+    {
+      "id": "trig-6",
+      "type": "lookalike_non_trigger_execution",
+      "prompt": "幫我把這段給實習生看的新人報到信改得更親切一點。",
+      "expected_trigger": false,
+      "expected_route": "direct_execution",
+      "rationale": "Direct copyediting of an email is not a prompt/SOP audit."
+    }
+  ]
+}

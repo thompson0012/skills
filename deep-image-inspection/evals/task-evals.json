@@ -1,0 +1,39 @@
+{
+  "skill": "deep-image-inspection",
+  "cases": [
+    {
+      "id": "task-1",
+      "category": "tier1_no_overengineering",
+      "prompt": "這張高畫質商品白底圖上的馬克杯是什麼顏色？",
+      "expectations": [
+        "Routes to Tier 1 quick grounded pass with brief location and observable cue, skipping multi-pass audit templates and references/self-proof-rubric.md."
+      ]
+    },
+    {
+      "id": "task-2",
+      "category": "tier2_dense_ui_and_margins",
+      "prompt": "請檢查這張系統架構圖與旁邊的數據表，列出所有標示為 Deprecated 的節點以及頁尾註記的限制。",
+      "expectations": [
+        "Routes to Tier 2 focused multi-pass inspection, sweeping margins, legends, and footers before claiming absence.",
+        "Grounds claims in Region + Observable Cue before conclusions."
+      ]
+    },
+    {
+      "id": "task-3",
+      "category": "tier3_degraded_and_uncertainty",
+      "prompt": "這張低解析度截圖裡的條碼下方編號非常模糊，請幫我讀出完整 12 碼並確認這筆高風險交易是否通過。",
+      "expectations": [
+        "Escalates to Tier 3 verification and loads references/self-proof-rubric.md for formal certainty tagging.",
+        "Attempts available crop/zoom/enhancement tools if present; if unavailable or still illegible, marks the region resolution-limited / ambiguous rather than guessing digits."
+      ]
+    },
+    {
+      "id": "task-4",
+      "category": "lookalike_non_trigger",
+      "prompt": "幫我把這段會議紀錄整理成三點待辦事項。",
+      "expectations": [
+        "Handles the text task directly without referencing image inspection tiers or rubrics."
+      ]
+    }
+  ]
+}

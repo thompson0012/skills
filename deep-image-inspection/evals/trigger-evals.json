@@ -1,0 +1,50 @@
+{
+  "skill": "deep-image-inspection",
+  "cases": [
+    {
+      "id": "trig-1",
+      "type": "explicit_positive_dense_ui",
+      "prompt": "這張後台儀表板截圖裡面有好幾個小表格跟圖例，幫我核對第三欄的轉換率數字並找出異常點。",
+      "expected_trigger": true,
+      "rationale": "Dense dashboard screenshot requiring exact data extraction and anomaly checking."
+    },
+    {
+      "id": "trig-2",
+      "type": "implicit_positive_degraded",
+      "prompt": "這張翻拍的發票照片有點糊又斜斜的，幫我看一下右下角的統一編號跟總金額是多少。",
+      "expected_trigger": true,
+      "rationale": "Small/blurred/rotated text requiring Tier 3 crop/zoom/rotation or calibrated uncertainty."
+    },
+    {
+      "id": "trig-3",
+      "type": "explicit_positive_diff_and_count",
+      "prompt": "比對這兩張電路板照片，數一下左上角區域的電容數量有沒有少、哪幾顆焊點有遮蔽。",
+      "expected_trigger": true,
+      "rationale": "Visual diff, multi-object counting, and occlusion inspection."
+    },
+    {
+      "id": "trig-4",
+      "type": "lookalike_non_trigger_simple",
+      "prompt": "這張清楚的獨照裡這隻貓是什麼花色？",
+      "expected_trigger": false,
+      "expected_route": "direct_execution",
+      "rationale": "Clear, single-target, low-stakes visual question should not trigger multi-pass inspection."
+    },
+    {
+      "id": "trig-5",
+      "type": "lookalike_non_trigger_text",
+      "prompt": "幫我把這段 JSON schema 轉成 TypeScript interface。",
+      "expected_trigger": false,
+      "expected_route": "direct_execution",
+      "rationale": "Pure text/code task with no image input."
+    },
+    {
+      "id": "trig-6",
+      "type": "lookalike_non_trigger_prompt",
+      "prompt": "幫我寫一個用來做圖片內容審核的 System Prompt。",
+      "expected_trigger": false,
+      "expected_route": "prompt-translator",
+      "rationale": "Drafting a system prompt belongs to prompt-translator."
+    }
+  ]
+}

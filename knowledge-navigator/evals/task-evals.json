@@ -1,0 +1,42 @@
+{
+  "skill": "knowledge-navigator",
+  "cases": [
+    {
+      "id": "task-1",
+      "category": "new_domain_50_percent_map",
+      "prompt": "我是後端工程師但沒碰過分散式追蹤（Distributed Tracing），想在明天技術選型會議前聽得懂大家在講什麼。",
+      "expectations": [
+        "Provides a grouped ~25-term high-frequency vocabulary map across system layers with brief plain-language labels.",
+        "Marks and explains the 3-5 terms tied directly to the immediate selection goal first, deferring the rest.",
+        "Maintains 50% practical depth without dumping low-level protocol internals or unrequested tangents.",
+        "Ends with up to 3 fishbone-aligned gap questions stating which gap each addresses, and does NOT proactively output a Lit-Knowledge Map."
+      ]
+    },
+    {
+      "id": "task-2",
+      "category": "single_concept_and_restraint",
+      "prompt": "解釋一下什麼是資料庫的 MVCC，只要講到能理解為什麼讀寫不會互鎖就好，不要展開底層實作細節。",
+      "expectations": [
+        "Resolves MVCC directly with plain essence, core cause-and-effect, one concrete example, and one pitfall/boundary.",
+        "Respects the explicit depth restraint and avoids low-level storage engine internals.",
+        "Backfills only 2-4 directly adjacent terms."
+      ]
+    },
+    {
+      "id": "task-3",
+      "category": "pull_only_lit_map",
+      "prompt": "請輸出我目前的點亮知識圖（Lit-Knowledge Map）。",
+      "expectations": [
+        "Renders the Lit-Knowledge Map only on explicit request and strictly reflects what was actually covered in-session without marking unverified topics as lit."
+      ]
+    },
+    {
+      "id": "task-4",
+      "category": "lookalike_non_trigger",
+      "prompt": "幫我把這段 Python script 的 SyntaxError 修好。",
+      "expectations": [
+        "Fixes the code directly instead of lecturing or outputting a vocabulary map and fishbone questions."
+      ]
+    }
+  ]
+}
